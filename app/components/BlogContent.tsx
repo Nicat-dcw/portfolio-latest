@@ -7,6 +7,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { useState } from "react";
 import { ClipboardIcon, ClipboardDocumentCheckIcon } from "@heroicons/react/24/outline";
 import rehypeHighlight from "rehype-highlight";
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+type MDXComponents = MDXRemoteProps['components']
 
 const CopyButton = ({ code }: { code: string }) => {
   const [copied, setCopied] = useState(false);
@@ -36,12 +38,12 @@ const CopyButton = ({ code }: { code: string }) => {
 export function BlogContent({ post }: { post: BlogPost }) {
   const t = useTranslations();
 
-  const components = {
-    pre: ({ children }: { children: any }) => {
-      const code = children?.props?.children;
+  const components: MDXComponents = {
+    pre: (props) => {
+      const code = props.children?.toString() ?? '';
       return (
         <div className="relative">
-          <pre className="relative">{children}</pre>
+          <pre className="relative" {...props}>{props.children}</pre>
           <CopyButton code={code} />
         </div>
       );
