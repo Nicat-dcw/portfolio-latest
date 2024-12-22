@@ -1,0 +1,49 @@
+{
+  "common": {
+    "welcome": "Xoş gəldiniz",
+    "theme": {
+      "light": "İşıqlı",
+      "dark": "Qaranlıq",
+      "system": "Sistem"
+    }
+  },
+  "hero": {
+    "title": "Full Stack",
+    "titleHighlight": "Developer",
+    "description": "Mən universitet tələbəsiyəm və süni intellektə böyük marağım var və layihələrimdə typescript istifadə etməyi sevirəm",
+    "github": "GitHub Profili",
+    "work": "İşlərimi gör",
+    "techStack": "Texnologiyalar"
+  },
+  "navbar": {
+    "projects": "Layihələr",
+    "blog": "Bloq",
+    "social": "Sosial",
+    "github": "Github",
+    "settings": "Tənzimləmələr"
+  },
+  "projects": {
+    "title": "Seçilmiş",
+    "titleHighlight": "Layihələr",
+    "subtitle": "Bacarıq və təcrübəmi nümayiş etdirən son layihələrimdən bəziləri"
+  },
+  "settings": {
+    "title": "Tənzimləmələr",
+    "theme": "Tema",
+    "language": "Dil"
+  },
+  "techStack": {
+    "title": "Texniki",
+    "titleHighlight": "Stack",
+    "description": "Tez-tez istifadə etdiyim texnologiyalar və alətlər"
+  },
+  "blog": {
+    "title": "Son",
+    "titleHighlight": "Yazılar",
+    "readMore": "Davamını oxu",
+    "publishedOn": "Dərc edilib:",
+    "by": "müəllif:",
+    "copyCode": "Kodu kopyala",
+    "copied": "Kopyalandı!"
+  }
+} 

@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/config/projects";
+import { useTranslations } from "./i18n-provider";
 
 export default function Projects() {
+  const t = useTranslations();
+
   return (
     <section className="relative py-20">
       <motion.div
@@ -16,10 +19,13 @@ export default function Projects() {
       >
         <div className="space-y-2 text-center">
           <h2 className="text-4xl font-bold sm:text-5xl">
-            Featured <span className="bg-gradient-to-tl from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent">Projects</span>
+            {t.projects.title}{" "}
+            <span className="bg-gradient-to-tl from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent">
+              {t.projects.titleHighlight}
+            </span>
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills and experience.
+            {t.projects.subtitle}
           </p>
         </div>
 
@@ -41,7 +47,7 @@ export default function Projects() {
               
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/20 to-transparent transition-opacity duration-300" />
 
-              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+              <div className="group absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-3 mt-12">
                   <h3 className="text-2xl font-bold text-white">
                     {project.title}
@@ -63,7 +69,7 @@ export default function Projects() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center text-sm font-medium text-purple-200 hover:text-white"
+                    className="opacity-0 group-hover:block group-hover:opacity-100 transition-opacity duration-300 inline-flex items-center text-sm font-medium text-purple-200 hover:text-white"
                   >
                     View Project
                     <svg

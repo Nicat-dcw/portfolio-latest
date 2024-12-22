@@ -93,7 +93,7 @@ export default function SettingsModal({ isOpen, closeModal }: SettingsModalProps
                   <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
                     {t.settings.language}
                   </h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-3 gap-3">
                     {i18n.locales.map((locale) => (
                       <button
                         key={locale}
@@ -103,7 +103,9 @@ export default function SettingsModal({ isOpen, closeModal }: SettingsModalProps
                         }}
                         className="flex items-center justify-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                       >
-                        <span className="text-sm capitalize">{locale === 'en' ? 'English' : 'Español'}</span>
+                        <span className="text-sm capitalize">
+                          {locale === 'en' ? 'English' : locale === 'es' ? 'Español' : 'Azərbaycanca'}
+                        </span>
                       </button>
                     ))}
                   </div>

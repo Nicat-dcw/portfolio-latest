@@ -31,5 +31,19 @@
     "title": "Ajustes",
     "theme": "Tema",
     "language": "Idioma"
+  },
+  "techStack": {
+    "title": "Stack",
+    "titleHighlight": "Tecnológico",
+    "description": "Tecnologías y herramientas con las que trabajo frecuentemente"
+  },
+  "blog": {
+    "title": "Últimas",
+    "titleHighlight": "Publicaciones",
+    "readMore": "Leer más",
+    "publishedOn": "Publicado el",
+    "by": "por",
+    "copyCode": "Copiar código",
+    "copied": "¡Copiado!"
   }
 } 

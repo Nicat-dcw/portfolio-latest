@@ -1,6 +1,7 @@
 const dictionaries = {
   en: () => import('@/app/lib/i18n/dictionaries/en.json').then((module) => module.default),
   es: () => import('@/app/lib/i18n/dictionaries/es.json').then((module) => module.default),
+  az: () => import('@/app/lib/i18n/dictionaries/az.json').then((module) => module.default),
 }
 
 export type Lang = keyof typeof dictionaries

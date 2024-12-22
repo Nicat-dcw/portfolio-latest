@@ -6,9 +6,11 @@ import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useTranslations } from "./i18n-provider";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const t = useTranslations();
+  const router = useRouter();
 
   return (
     <div className="min-h-[calc(100vh-4rem)] pt-16 md:pt-20 flex flex-col justify-center">
@@ -73,9 +75,10 @@ export default function Hero() {
             <div className="space-y-1">
               <p className="text-sm text-gray-500 dark:text-gray-400">{t.hero.techStack}</p>
               <div className="flex flex-wrap gap-2">
-                {["React", "Next.js", "TypeScript", "Node.js", "Tailwind"].map((tech) => (
+                {["React", "Next.js", "TypeScript", "Node.js", "more"].map((tech) => (
                   <span
                     key={tech}
+                    onClick={() => router.push("#tech")}
                     className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-[#212121]"
                   >
                     {tech}
