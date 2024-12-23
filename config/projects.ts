@@ -11,7 +11,7 @@ export const projects = [
     description: "Framework for interacting with discord api. written with bun and typescript",
     image: "https://avatars.githubusercontent.com/u/59221034?s=400&u=467d7330f5108f682fb7aae7c846f4722dc76050&v=4",
     link: "https://github.com/discordium.js",
-    tags: ["Bun", "Typescript", "Discord"]
+    tags: ["API", "Typescript", "Discord"]
   },
   {
     title: "Secret Project",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import SettingsModal from "./SettingsModal";
@@ -10,37 +10,23 @@ import { useTranslations } from "./i18n-provider";
 export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const t = useTranslations();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
       <div className="h-16 md:h-20" />
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? " backdrop-blur-md shadow-lg" : ""
-      }`}>
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-filter-blur backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4">
-          <div className={`flex items-center justify-between py-4 transition-all duration-300 ${
-            isScrolled ? "mx-2 my-2 rounded-lg bg-white/50 dark:bg-gray-800/50" : ""
-          }`}>
+          <div className="flex items-center justify-between py-4 transition-colors">
             {/* Left side - Profile */}
             <div className="flex items-center gap-3">
               <div>
-                <a href="/" className="font-medium dark:text-white ml-1">Nicat-dcw</a>
+                <a href="/" className="font-medium dark:text-white">Nicat-dcw</a>
                 <div className="flex items-center gap-2">
                   <span className="text-sm bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full font-medium">
                     beta
                   </span>
-                  <span className="text-gray-600 dark:text-gray-400 ml-1 ">v2.0</span>
+                  <span className="text-gray-600 dark:text-gray-400">v2.0</span>
                 </div>
               </div>
             </div>
