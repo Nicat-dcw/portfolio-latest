@@ -68,7 +68,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 shadow-[0px_20px_207px_10px_rgba(165,_39,_255,_0.48)];
   }
 
   /* Light theme gradient */

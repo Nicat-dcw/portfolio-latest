@@ -136,7 +136,7 @@ export default function TechStack() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="space-y-12"
+        className="space-y-12 "
       >
         <div className="space-y-2 text-center">
           <h2 className="text-4xl font-bold sm:text-5xl">
@@ -149,9 +149,9 @@ export default function TechStack() {
             {t.techStack.description}
           </p>
         </div>
-
+<div className="invisible w-24 shadow-[0px_20px_207px_10px_rgba(165,_39,_255,_0.48)]"></div>
         {/* Category Tabs */}
-        <div className="flex justify-center gap-2 flex-wrap">
+        <div className="flex justify-center gap-2 flex-wrap ">
           {categories.map((category) => (
             <button
               key={category.id}
