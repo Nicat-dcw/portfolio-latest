@@ -36,7 +36,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative aspect-square overflow-hidden rounded-2xl"
+              className="group relative aspect-square overflow-hidden rounded-2xl motion motion-preset-slide-left "
             >
               <Image
                 src={project.image || "/images/logo.webp"}

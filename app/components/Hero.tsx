@@ -18,7 +18,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 gap-8 md:grid-cols-[1fr,1fr] items-center"
+        className="grid grid-cols-1 gap-8 md:grid-cols-[1fr,1fr] items-center motion-preset-fade"
       >
         {/* Profile Image */}
         <motion.div

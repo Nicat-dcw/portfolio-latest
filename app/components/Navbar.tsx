@@ -19,35 +19,35 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-4 transition-colors">
             {/* Left side - Profile */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 motion-preset-slide-down">
               <div>
-                <a href="/" className="font-medium dark:text-white">Nicat-dcw</a>
+                <a href="/" className="font-medium dark:text-white motion-preset-rebound-down motion-delay-[400ms]">Nicat-dcw</a>
                 <div className="flex items-center gap-2">
                   <span className="text-sm bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-300 px-2 py-0.5 rounded-full font-medium">
                     beta
                   </span>
-                  <span className="text-gray-600 dark:text-gray-400">v2.0</span>
+                  <span className="text-gray-600 dark:text-gray-400 motion-preset-rebound-down motion-delay-[400ms]">v2.0</span>
                 </div>
               </div>
             </div>
 
             {/* Center - Navigation (Hidden on mobile) */}
-            <div className="hidden md:flex gap-6 font-bold">
+            <div className="hidden md:flex gap-6 font-bold ">
               <Link
                 href="#projects"
-                className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                className="text-gray-800 motion-preset-rebound-down motion-delay-[400ms] dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
               >
                 {t.navbar.projects}
               </Link>
               <Link
                 href="/blog"
-                className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                className="text-gray-800 motion-preset-rebound-down motion-delay-[400ms] dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
               >
                 {t.navbar.blog}
               </Link>
               <Link
                 href="/social"
-                className="text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                className="text-gray-800 motion-preset-rebound-down motion-delay-[400ms] dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
               >
                 {t.navbar.social}
               </Link>
@@ -59,13 +59,13 @@ export default function Navbar() {
                 href="https://github.com/Nicat-dcw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden md:inline-block px-4 py-1 rounded hover:bg-gray-100 dark:hover:bg-[#212121] text-gray-800 dark:text-gray-200 transition-colors"
+                className="hidden motion-preset-rebound-down motion-delay-[400ms] md:inline-block px-4 py-1 rounded hover:bg-gray-100 dark:hover:bg-[#212121] text-gray-800 dark:text-gray-200 transition-colors"
               >
                 {t.navbar.github}
               </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors"
+                className="p-2 motion-preset-rebound-down motion-delay-[400ms] rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors"
                 aria-label={t.navbar.settings}
               >
                 <Cog6ToothIcon className="w-5 h-5" />
