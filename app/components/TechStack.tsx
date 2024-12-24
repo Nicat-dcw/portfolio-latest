@@ -29,7 +29,7 @@ const technologies = [
     name: "TypeScript", 
     icon: SiTypescript, 
     color: "hover:text-blue-500",
-    category: "frontend"
+    category: "backend"
   },
   { 
     name: "Tailwind", 
