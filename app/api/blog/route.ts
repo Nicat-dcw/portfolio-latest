@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       content: data.content,
       description: data.description,
       date: new Date().toISOString(),
-      tags: JSON.stringify(data.tags),
+      tags: data.tags,
       authorName: session.user?.name || "Anonymous",
       authorAvatar: session.user?.image || "/default-avatar.png",
     });
