@@ -14,4 +14,21 @@ export const posts = sqliteTable('posts', {
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const pageViews = sqliteTable('page_views', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  path: text('path').notNull(),
+  timestamp: text('timestamp').default(sql`CURRENT_TIMESTAMP`),
+  userId: text('user_id'),
+  sessionId: text('session_id').notNull(),
+});
+
+export const apiKeys = sqliteTable('api_keys', {
+  id: integer('id').primaryKey(),
+  key: text('key').notNull().unique(),
+  name: text('name').notNull(),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+  lastUsed: text('last_used'),
+  expiresAt: text('expires_at'),
+});
+
 export type Post = typeof posts.$inferSelect; 

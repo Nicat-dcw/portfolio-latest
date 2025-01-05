@@ -15,7 +15,7 @@ export default async function BlogPage({
 }) {
   const { q, tag } = searchParams;
   
-  // Filter posts based on search query and tag
+ 
   let filteredPosts = blogPosts;
   
   if (q) {
@@ -31,7 +31,6 @@ export default async function BlogPage({
     );
   }
 
-  // Get unique tags
   const allTags = Array.from(
     new Set(blogPosts.flatMap(post => post.tags))
   );
