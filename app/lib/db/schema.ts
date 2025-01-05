@@ -15,7 +15,7 @@ export const posts = sqliteTable('posts', {
 });
 
 export const pageViews = sqliteTable('page_views', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+  id: integer('id').primaryKey(),
   path: text('path').notNull(),
   timestamp: text('timestamp').default(sql`CURRENT_TIMESTAMP`),
   userId: text('user_id'),
@@ -32,7 +32,7 @@ export const apiKeys = sqliteTable('api_keys', {
 });
 
 export const visitors = sqliteTable('visitors', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
+  id: integer('id').primaryKey(),
   ipAddress: text('ip_address').notNull(),
   path: text('path').notNull(),
   userAgent: text('user_agent'),

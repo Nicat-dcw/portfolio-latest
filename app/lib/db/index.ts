@@ -1,17 +1,15 @@
 import { drizzle } from 'drizzle-orm/better-sqlite3';
 import Database from 'better-sqlite3';
-import { posts } from './schema';
+import path from 'path';
+import fs from 'fs';
 
-const sqlite = new Database('sqlite.db');
-export const db = drizzle(sqlite);
+// Ensure the data directory exists
+const dataDir = path.join(process.cwd(), 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
 
-// Helper function to seed the database
-export async function seedDatabase() {
-  const existingPosts = await db.select().from(posts);
-  if (existingPosts.length === 0) {
-    // Add your seed data here
-    await db.insert(posts).values([
-      // ... your blog posts data
-    ]);
-  }
-} 
+// Use data directory for database file
+const dbPath = path.join(dataDir, 'sqlite.db');
+const sqlite = new Database(dbPath);
+export const db = drizzle(sqlite); 

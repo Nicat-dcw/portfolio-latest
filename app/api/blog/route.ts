@@ -1,5 +1,4 @@
 import { db } from "@/app/lib/db";
-import { posts } from "@/app/lib/db/schema";
 import { nanoid } from "nanoid";
 import { auth } from "@/app/lib/auth";
 
@@ -12,37 +11,29 @@ export async function POST(req: Request) {
 
     const data = await req.json();
     const uuid = nanoid();
-
-    const post = await db.insert(posts).values({
+    const post = {
       uuid,
-      title: data.title,
-      content: data.content,
-      description: data.description,
+      ...data,
       date: new Date().toISOString(),
-      tags: data.tags,
       authorName: session.user?.name || "Anonymous",
       authorAvatar: session.user?.image || "/default-avatar.png",
-    });
+      createdAt: new Date().toISOString()
+    };
 
+    await db.createPost(post);
     return Response.json({ success: true, post });
   } catch (error) {
     console.error("Failed to create post:", error);
-    return Response.json(
-      { error: "Failed to create post" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to create post" }, { status: 500 });
   }
 }
 
 export async function GET() {
   try {
-    const allPosts = await db.select().from(posts);
-    return Response.json({ posts: allPosts });
+    const posts = await db.getAllPosts();
+    return Response.json({ posts: Object.values(posts) });
   } catch (error) {
     console.error("Failed to fetch posts:", error);
-    return Response.json(
-      { error: "Failed to fetch posts" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to fetch posts" }, { status: 500 });
   }
 } 
