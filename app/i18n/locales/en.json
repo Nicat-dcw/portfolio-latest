@@ -1,0 +1,8 @@
+{
+  "blog": {
+    "title": "Blog",
+    "description": "Latest posts and updates",
+    "readMore": "Read more",
+    "noResults": "No posts found"
+  }
+} 

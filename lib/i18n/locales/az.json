@@ -1,0 +1,13 @@
+{
+  "blog": {
+    "title": "Bloq",
+    "titleHighlight": "Yazılar",
+    "description": "Ən son yazılar və yeniliklər",
+    "readMore": "Daha çox",
+    "noResults": "Heç bir yazı tapılmadı",
+    "publishedOn": "Dərc edilib",
+    "by": "tərəfindən",
+    "copyCode": "Kodu kopyala",
+    "copied": "Kopyalandı!"
+  }
+} 

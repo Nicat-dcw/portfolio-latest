@@ -31,4 +31,12 @@ export const apiKeys = sqliteTable('api_keys', {
   expiresAt: text('expires_at'),
 });
 
+export const visitors = sqliteTable('visitors', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  ipAddress: text('ip_address').notNull(),
+  path: text('path').notNull(),
+  userAgent: text('user_agent'),
+  timestamp: text('timestamp').default(sql`CURRENT_TIMESTAMP`),
+});
+
 export type Post = typeof posts.$inferSelect; 

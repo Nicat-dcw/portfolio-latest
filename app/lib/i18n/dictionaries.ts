@@ -1,15 +1,16 @@
+import type { Locale } from '@/i18n-config';
+
 const dictionaries = {
-  en: () => import('@/app/lib/i18n/dictionaries/en.json').then((module) => module.default),
-  es: () => import('@/app/lib/i18n/dictionaries/es.json').then((module) => module.default),
-  az: () => import('@/app/lib/i18n/dictionaries/az.json').then((module) => module.default),
-}
+  en: () => import('./dictionaries/en.json').then(module => module.default),
+  es: () => import('./dictionaries/es.json').then(module => module.default),
+  az: () => import('./dictionaries/az.json').then(module => module.default),
+} satisfies Record<Locale, () => Promise<any>>;
 
-export type Lang = keyof typeof dictionaries
-
-export async function getDictionary(lang: Lang) {
+export const getDictionary = async (locale: Locale) => {
   try {
-    return await dictionaries[lang]()
+    return await dictionaries[locale]();
   } catch (error) {
-    return dictionaries.en() // Fallback to English
+    console.error('Failed to load dictionary:', error);
+    return dictionaries.en(); // Fallback to English
   }
-} 
+}; 

@@ -1,0 +1,13 @@
+{
+  "blog": {
+    "title": "Blog",
+    "titleHighlight": "Posts",
+    "description": "Latest posts and updates",
+    "readMore": "Read more",
+    "noResults": "No posts found",
+    "publishedOn": "Published on",
+    "by": "by",
+    "copyCode": "Copy code",
+    "copied": "Copied!"
+  }
+} 

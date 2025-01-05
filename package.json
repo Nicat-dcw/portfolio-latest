@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run db:migrate",
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "npx tsx app/lib/db/migrations/migrate.ts"
