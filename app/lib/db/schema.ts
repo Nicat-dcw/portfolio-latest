@@ -39,4 +39,14 @@ export const visitors = sqliteTable('visitors', {
   timestamp: text('timestamp').default(sql`CURRENT_TIMESTAMP`),
 });
 
-export type Post = typeof posts.$inferSelect; 
+export const users = sqliteTable('users', {
+  id: integer('id').primaryKey(),
+  email: text('email').notNull().unique(),
+  username: text('username').notNull(),
+  passwordHash: text('password_hash').notNull(),
+  avatar: text('avatar'),
+  createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+});
+
+export type Post = typeof posts.$inferSelect;
+export type User = typeof users.$inferSelect; 

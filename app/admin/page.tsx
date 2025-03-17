@@ -1,98 +1,97 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card } from "@tremor/react";
 import { AnalyticsChart } from "@/app/components/admin/AnalyticsChart";
-import { db } from "@/app/lib/db";
-import { visitors } from "@/app/lib/db/schema";
-import { sql } from "drizzle-orm";
+import { AuthCheck } from "@/app/components/admin/AuthCheck";
 
-export default async function AdminDashboard() {
-  // Get unique visitors count
-  const uniqueVisitors = await db
-    .select({ 
-      count: sql<number>`COUNT(DISTINCT ip_address)` 
-    })
-    .from(visitors);
+export default function AdminPage() {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [analytics, setAnalytics] = useState([]);
+  const [stats, setStats] = useState([
+    { name: "Total Page Views", value: 0 },
+    { name: "Unique Visitors", value: 0 },
+    { name: "Views Today", value: 0 },
+  ]);
 
-  // Get total visits
-  const totalVisits = await db
-    .select({ 
-      count: sql<number>`COUNT(*)` 
-    })
-    .from(visitors);
+  useEffect(() => {
+    // Check if session cookie exists
+    const hasSessionCookie = document.cookie.includes("session=authenticated");
+    
+    if (!hasSessionCookie) {
+      router.push("/admin/login");
+    } else {
+      setIsAuthenticated(true);
+      setIsLoading(false);
+      
+      // Fetch analytics data
+      fetchAnalytics();
+    }
+  }, [router]);
 
-  // Get last 24 hours visitors
-  const last24Hours = await db
-    .select({ 
-      count: sql<number>`COUNT(DISTINCT ip_address)` 
-    })
-    .from(visitors)
-    .where(sql`timestamp > datetime('now', '-1 day')`);
+  const fetchAnalytics = async () => {
+    try {
+      // Fetch data from an API endpoint instead of direct DB access
+      const response = await fetch("/api/admin/analytics");
+      const data = await response.json();
+      
+      setAnalytics(data.analytics);
+      setStats([
+        { name: "Total Page Views", value: data.pageViews || 0 },
+        { name: "Unique Visitors", value: data.uniqueVisitors || 0 },
+        { name: "Views Today", value: data.today || 0 },
+      ]);
+    } catch (error) {
+      console.error("Failed to fetch analytics:", error);
+    }
+  };
 
-  // Get last 7 days visitors
-  const last7Days = await db
-    .select({ 
-      count: sql<number>`COUNT(DISTINCT ip_address)` 
-    })
-    .from(visitors)
-    .where(sql`timestamp > datetime('now', '-7 day')`);
+  const handleLogout = () => {
+    document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    router.push("/admin/login");
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-violet-500"></div>
+      </div>
+    );
+  }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 space-y-6">
-        <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h2 className="text-3xl font-bold dark:text-gray-100">Analytics Overview</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Website traffic and engagement</p>
-            </div>
-            <span className="text-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-1.5 rounded-full text-sm font-medium">
-              Active
-            </span>
-          </div>
-          <AnalyticsChart />
-        </Card>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-            <h3 className="text-2xl font-bold dark:text-gray-100">{uniqueVisitors[0].count}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Total Unique Visitors</p>
-          </Card>
-          <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-            <h3 className="text-2xl font-bold dark:text-gray-100">{totalVisits[0].count}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Total Page Views</p>
-          </Card>
-          <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-            <h3 className="text-2xl font-bold dark:text-gray-100">{last24Hours[0].count}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Visitors (24h)</p>
-            <span className="text-emerald-500 text-sm mt-2 inline-block">Active now ●</span>
-          </Card>
-          <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-            <h3 className="text-2xl font-bold dark:text-gray-100">{last7Days[0].count}</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Visitors (7d)</p>
-          </Card>
+    <AuthCheck>
+      <div className="space-y-8">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <button 
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+          >
+            Sign Out
+          </button>
         </div>
-      </div>
 
-      <div className="lg:col-span-1">
-        <Card className="p-6 bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50">
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-lg font-semibold dark:text-gray-100">Quick Actions</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Common admin tasks</p>
-            </div>
-            <div className="space-y-4">
-              <button className="w-full px-4 py-2.5 text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors">
-                Create New Post
-              </button>
-              <button className="w-full px-4 py-2.5 text-sm font-medium text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-500/10 hover:bg-violet-100 dark:hover:bg-violet-500/20 rounded-lg transition-colors">
-                Generate API Key
-              </button>
-              <button className="w-full px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-gray-200 dark:border-gray-700">
-                View Analytics
-              </button>
-            </div>
+        <Card>
+          <h2 className="text-lg font-medium mb-4">Page Views</h2>
+          <AnalyticsChart data={analytics} />
+        </Card>
+
+        <Card>
+          <h2 className="text-lg font-medium mb-4">Stats</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {stats.map((stat) => (
+              <div key={stat.name} className="bg-white p-4 rounded-lg shadow">
+                <p className="text-sm text-gray-500">{stat.name}</p>
+                <p className="text-2xl font-bold">{stat.value.toLocaleString()}</p>
+              </div>
+            ))}
           </div>
         </Card>
       </div>
-    </div>
+    </AuthCheck>
   );
 }

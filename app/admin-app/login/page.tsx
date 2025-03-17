@@ -10,22 +10,28 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
+    setIsLoading(true);
 
     try {
-      // Simple login with hardcoded credentials for this demo
-      if (email === "admin@example.com" && password === "adminpassword") {
-        // Set a cookie directly via JavaScript
-        document.cookie = "session=authenticated; path=/; max-age=86400";
-        router.push("/admin");
-      } else {
-        setError("Invalid credentials");
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Login failed");
       }
+
+      // Successfully logged in, redirect without checking cookies
+      router.push("/admin");
     } catch (error) {
-      setError("Login failed");
+      setError(error instanceof Error ? error.message : "Login failed");
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +47,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
             <div className="p-3 bg-red-100 border border-red-200 text-red-600 rounded-lg text-sm">
               {error}
@@ -49,7 +55,7 @@ export default function LoginPage() {
           )}
           
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Email
             </label>
             <input
@@ -58,13 +64,13 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 text-sm border rounded-lg"
+              className="w-full px-4 py-2.5 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
               placeholder="admin@example.com"
             />
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Password
             </label>
             <input
@@ -73,7 +79,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2.5 text-sm border rounded-lg"
+              className="w-full px-4 py-2.5 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg"
               placeholder="••••••••"
             />
           </div>
@@ -81,7 +87,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 text-white bg-black rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-white bg-black rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
           >
             {isLoading ? "Signing in..." : "Sign in"}
           </button>

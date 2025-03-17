@@ -14,6 +14,21 @@ const nextConfig = {
       }
     ],
   },
+  experimental: {
+    appDir: true,
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin-app',
+      },
+      {
+        source: '/admin/:path*',
+        destination: '/admin-app/:path*',
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig 

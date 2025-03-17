@@ -1,49 +1,79 @@
 "use client";
 
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { MobileSidebar } from "./MobileSidebar";
+import Link from "next/link";
 import Image from "next/image";
-import { User } from "next-auth";
 
-interface MobileHeaderProps {
-  user: User;
-}
-
-export function MobileHeader({ user }: MobileHeaderProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
+export function MobileHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+  const handleLogout = () => {
+    document.cookie = "session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "/admin/login";
+  };
+  
   return (
-    <>
-      <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white dark:bg-gray-800 dark:border-gray-700 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8 md:hidden">
+    <header className="lg:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+      <div className="flex h-16 items-center justify-between px-6">
         <button
           type="button"
-          className="-m-2.5 p-2.5 text-gray-700 dark:text-gray-200"
-          onClick={() => setSidebarOpen(true)}
+          className="text-gray-700 dark:text-gray-200"
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className="sr-only">Open sidebar</span>
-          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
         </button>
-
-        <div className="flex flex-1 justify-end gap-x-4 self-stretch lg:gap-x-6">
-          <div className="flex items-center gap-x-4 lg:gap-x-6">
-            <div className="flex items-center gap-3">
-              <span className="hidden sm:block">{user.name}</span>
-              {user.image && (
-                <Image
-                  className="h-8 w-8 rounded-full bg-gray-50"
-                  src={user.image}
-                  alt={user.name || ""}
-                  width={32}
-                  height={32}
-                />
-              )}
+        
+        <div className="flex items-center gap-x-4 lg:gap-x-6">
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-700">
+              A
             </div>
           </div>
         </div>
       </div>
-
-      <MobileSidebar open={sidebarOpen} setOpen={setSidebarOpen} />
-    </>
+      
+      {menuOpen && (
+        <nav className="py-4 px-6 border-t border-gray-200 dark:border-gray-800">
+          <ul className="space-y-4">
+            <li>
+              <Link href="/admin" className="block py-2 hover:text-violet-500">
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/blog" className="block py-2 hover:text-violet-500">
+                Blog Posts
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/api-keys" className="block py-2 hover:text-violet-500">
+                API Keys
+              </Link>
+            </li>
+            <li>
+              <button 
+                onClick={handleLogout}
+                className="w-full text-left py-2 text-red-600 hover:text-red-700"
+              >
+                Sign Out
+              </button>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </header>
   );
 } 

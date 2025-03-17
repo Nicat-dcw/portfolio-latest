@@ -3,6 +3,7 @@ import { up as createPageViews } from "./0000_create_page_views";
 import { up as createApiKeys } from "./0001_create_api_keys";
 import { up as createPosts } from "./0002_create_posts";
 import { up as createVisitors } from "./0003_create_visitors";
+import { up as createUsers } from "./0004_create_users";
 
 async function main() {
   console.log("Running migrations...");
@@ -10,6 +11,7 @@ async function main() {
   await createApiKeys(db);
   await createPosts(db);
   await createVisitors(db);
+  await createUsers(db);
   console.log("Migrations complete!");
   process.exit(0);
 }
