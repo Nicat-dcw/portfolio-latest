@@ -65,7 +65,7 @@ export default function Hero() {
             <Link
               href="#projects"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-colors rounded-lg bg-[rgba(255, 255, 255, 0.7)] hover:bg-gray-200 dark:bg-black dark:hover:bg-[#212121]"
->
+            >
               {t.hero.work}
               <HiOutlineArrowNarrowRight className="w-5 h-5" />
             </Link>
