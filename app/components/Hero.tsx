@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-import { useTranslations } from "./i18n-provider";
+import { useTranslations } from "@/app/components/i18n-provider";
 import { useRouter } from "next/navigation";
 
 export default function Hero() {
@@ -64,8 +64,8 @@ export default function Hero() {
             </Link>
             <Link
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-colors rounded-lg bg-gray-400 hover:bg-gray-200 dark:bg-black dark:hover:bg-[#212121]"
-            >
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-colors rounded-lg bg-[rgba(255, 255, 255, 0.7)] hover:bg-gray-200 dark:bg-black dark:hover:bg-[#212121]"
+>
               {t.hero.work}
               <HiOutlineArrowNarrowRight className="w-5 h-5" />
             </Link>

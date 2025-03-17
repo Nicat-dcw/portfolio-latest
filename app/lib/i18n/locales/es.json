@@ -1,0 +1,54 @@
+{
+  "navbar": {
+    "projects": "Proyectos",
+    "blog": "Blog",
+    "social": "Social",
+    "github": "GitHub",
+    "settings": "Ajustes"
+  },
+  "hero": {
+    "title": "Hola, Soy",
+    "titleHighlight": "Nicat",
+    "description": "Desarrollador Full Stack de Azerbaiyán",
+    "github": "Perfil de GitHub",
+    "work": "Ver Trabajo",
+    "techStack": "Tecnologías"
+  },
+  "social": {
+    "title": "Conecta",
+    "titleHighlight": "Conmigo",
+    "description": "Encuéntrame en varias plataformas y redes sociales",
+    "github": "Proyectos de código abierto y contribuciones",
+    "twitter": "Pensamientos y actualizaciones",
+    "linkedin": "Perfil profesional y conexiones",
+    "discord": "Únete a nuestra comunidad",
+    "twitch": "Transmisiones de código en vivo",
+    "youtube": "Tutoriales y contenido técnico"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "titleHighlight": "Destacados",
+    "description": "Algunos de mis trabajos recientes",
+    "viewProject": "Ver Proyecto",
+    "sourceCode": "Código Fuente"
+  },
+  "techStack": {
+    "title": "Stack",
+    "titleHighlight": "Técnico",
+    "description": "Tecnologías con las que trabajo",
+    "languages": "Lenguajes de Programación",
+    "frameworks": "Frameworks y Librerías",
+    "tools": "Herramientas y Plataformas"
+  },
+  "blog": {
+    "title": "Blog",
+    "titleHighlight": "Posts",
+    "description": "Últimas publicaciones y actualizaciones",
+    "readMore": "Leer más",
+    "noResults": "No se encontraron publicaciones",
+    "publishedOn": "Publicado el",
+    "by": "por",
+    "copyCode": "Copiar código",
+    "copied": "¡Copiado!"
+  }
+} 

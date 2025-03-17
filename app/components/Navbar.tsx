@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import SettingsModal from "./SettingsModal";
+import { SettingsModal } from "./SettingsModal";
 import MobileDrawer from "./MobileDrawer";
 import { useTranslations } from "./i18n-provider";
 

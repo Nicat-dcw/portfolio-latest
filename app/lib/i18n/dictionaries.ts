@@ -1,9 +1,9 @@
 import type { Locale } from '@/i18n-config';
 
 const dictionaries = {
-  en: () => import('./dictionaries/en.json').then(module => module.default),
-  es: () => import('./dictionaries/es.json').then(module => module.default),
-  az: () => import('./dictionaries/az.json').then(module => module.default),
+  en: () => import('./locales/en.json').then(module => module.default),
+  es: () => import('./locales/es.json').then(module => module.default),
+  az: () => import('./locales/az.json').then(module => module.default),
 } satisfies Record<Locale, () => Promise<any>>;
 
 export const getDictionary = async (locale: Locale) => {

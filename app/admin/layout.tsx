@@ -11,11 +11,12 @@ export default async function AdminLayout({
   const session = await auth();
   
   if (!session?.user) {
-    redirect("/login");
+    redirect("/admin/login");
   }
- console.log(session)
-  // Only allow specific users
-  if (session?.user?.id !== "acca1304-dfbf-49aa-a0e7-22c81fd85f8f") {
+
+  // Only allow specific GitHub users by ID
+  const allowedUsers = [process.env.GITHUB_USER_ID];
+  if (!session.user.id || !allowedUsers.includes(session.user.id)) {
     redirect("/");
   }
 
@@ -24,7 +25,7 @@ export default async function AdminLayout({
       <Sidebar user={session.user} />
       <div className="flex-1 flex flex-col">
         <MobileHeader user={session.user} />
-        <main className="flex-1 overflow-y-auto ">
+        <main className="flex-1 overflow-y-auto">
           <div className="container mx-auto px-4 sm:px-6 py-8">
             {children}
           </div>

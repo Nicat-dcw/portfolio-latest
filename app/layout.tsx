@@ -7,6 +7,10 @@ import { LoadingFallback } from "./components/LoadingFallback";
 import "./globals.css";
 import { LanguageProvider } from "./components/language-provider";
 import Navbar from "./components/Navbar";
+import { Providers } from "./providers";
+import { Analytics } from "./components/Analytics";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { headers } from 'next/headers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -56,33 +60,35 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { lang },
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  params: { lang: string };
-}>) {
+}) {
+  const headersList = headers();
+  const cookies = headersList.get('cookie');
+  const lang = cookies?.includes('language=') 
+    ? cookies.split('language=')[1].split(';')[0]
+    : 'en';
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider>
+        <I18nProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <I18nProvider>
-              <div className="max-w-7xl mx-auto px-4 min-h-screen dark:bg-transparent transition-colors">
-                <Navbar />
-                <Suspense fallback={<LoadingFallback />}>
-                  {children}
-                </Suspense>
-              </div>
-            </I18nProvider>
+            <div className="max-w-7xl mx-auto px-4 min-h-screen dark:bg-transparent transition-colors">
+              <Navbar />
+              <Suspense fallback={<LoadingFallback />}>
+                {children}
+              </Suspense>
+            </div>
           </ThemeProvider>
-        </LanguageProvider>
+        </I18nProvider>
       </body>
     </html>
   );

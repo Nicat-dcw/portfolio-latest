@@ -14,7 +14,8 @@ export const {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "/admin/login",
+    signOut: "/admin/logout",
   },
   callbacks: {
     async session({ session, token }) {
@@ -24,4 +25,5 @@ export const {
       return session;
     },
   },
+  trustHost: true
 }) 

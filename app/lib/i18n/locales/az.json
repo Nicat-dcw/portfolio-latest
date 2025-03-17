@@ -35,5 +35,20 @@
     "by": "tərəfindən",
     "copyCode": "Kodu kopyala",
     "copied": "Kopyalandı!"
+  },
+  "techStack": {
+    "title": "Texniki",
+    "titleHighlight": "Stack",
+    "description": "İstifadə etdiyim texnologiyalar",
+    "languages": "Proqramlaşdırma Dilləri",
+    "frameworks": "Framework və Kitabxanalar",
+    "tools": "Alətlər və Platformalar"
+  },
+  "projects": {
+    "title": "Seçilmiş",
+    "titleHighlight": "Layihələr",
+    "description": "Son işlərimdən bəziləri",
+    "viewProject": "Layihəyə Bax",
+    "sourceCode": "Mənbə Kodu"
   }
 } 

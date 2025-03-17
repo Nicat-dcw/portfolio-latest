@@ -15,8 +15,8 @@
     "techStack": "Tech Stack"
   },
   "social": {
-    "title": "Connect",
-    "titleHighlight": "With Me",
+    "title": "Connect With",
+    "titleHighlight": "Me",
     "description": "Find me on various platforms and social media",
     "github": "Open source projects and contributions",
     "twitter": "Thoughts and updates",
@@ -35,5 +35,20 @@
     "by": "by",
     "copyCode": "Copy code",
     "copied": "Copied!"
+  },
+  "techStack": {
+    "title": "Tech",
+    "titleHighlight": "Stack",
+    "description": "Technologies I work with",
+    "languages": "Programming Languages",
+    "frameworks": "Frameworks & Libraries",
+    "tools": "Tools & Platforms"
+  },
+  "projects": {
+    "title": "Featured",
+    "titleHighlight": "Projects",
+    "description": "Some of my recent work",
+    "viewProject": "View Project",
+    "sourceCode": "Source Code"
   }
 } 

@@ -8,7 +8,7 @@ export const posts = sqliteTable('posts', {
   content: text('content').notNull(),
   description: text('description').notNull(),
   date: text('date').notNull(),
-  tags: text('tags', { mode: 'json' }).$type<string[]>().notNull(),
+  tags: text('tags').notNull(),
   authorName: text('author_name').notNull(),
   authorAvatar: text('author_avatar').notNull(),
   createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
