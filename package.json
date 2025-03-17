@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && npm run db:migrate",
+    "dev": "npx prisma generate && next dev",
+    "build": "npx prisma generate && next build && npm run db:migrate",
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "npx tsx app/lib/db/migrations/migrate.ts"
