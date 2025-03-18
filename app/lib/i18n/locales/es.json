@@ -49,6 +49,7 @@
     "publishedOn": "Publicado el",
     "by": "por",
     "copyCode": "Copiar código",
-    "copied": "¡Copiado!"
+    "copied": "¡Copiado!",
+    "searchPlaceholder": "Buscar publicaciones..."
   }
 } 

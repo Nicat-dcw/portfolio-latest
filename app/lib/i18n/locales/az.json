@@ -34,7 +34,8 @@
     "publishedOn": "Dərc edilib",
     "by": "tərəfindən",
     "copyCode": "Kodu kopyala",
-    "copied": "Kopyalandı!"
+    "copied": "Kopyalandı!",
+    "searchPlaceholder": "Yazıları axtar..."
   },
   "techStack": {
     "title": "Texniki",

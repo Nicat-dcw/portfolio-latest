@@ -34,7 +34,8 @@
     "publishedOn": "Published on",
     "by": "by",
     "copyCode": "Copy code",
-    "copied": "Copied!"
+    "copied": "Copied!",
+    "searchPlaceholder": "Search posts..."
   },
   "techStack": {
     "title": "Tech",
