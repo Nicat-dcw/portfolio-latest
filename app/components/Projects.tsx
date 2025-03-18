@@ -25,7 +25,7 @@ export default function Projects() {
             </span>
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            {t.projects.subtitle}
+            {t.projects.description}
           </p>
         </div>
 
