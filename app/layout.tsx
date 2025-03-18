@@ -5,11 +5,7 @@ import { I18nProvider } from "./components/i18n-provider";
 import { Suspense } from "react";
 import { LoadingFallback } from "./components/LoadingFallback";
 import "./globals.css";
-import { LanguageProvider } from "./components/language-provider";
 import Navbar from "./components/Navbar";
-import { Providers } from "./providers";
-import { Analytics } from "./components/Analytics";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { headers } from 'next/headers';
 
 const geistSans = localFont({
