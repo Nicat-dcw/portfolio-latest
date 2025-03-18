@@ -48,7 +48,7 @@ export function BlogSearch({ initialQuery = "", tags, selectedTag }: BlogSearchP
         <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         <input
           type="search"
-          //@ts-expect-error
+          //@ts-expect-error placeholder is not typed
           placeholder={t.blog.searchPlaceholder}
           value={query}
           onChange={(e) => {
